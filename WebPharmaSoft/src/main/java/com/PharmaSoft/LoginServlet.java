@@ -34,24 +34,30 @@ public class LoginServlet extends HttpServlet {
             }
 
             rs.close();
+            
             if (storedPassword == null) {
-                request.setAttribute("errorMessage", "Invalid Username!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                showAlert(response, "Invalid Username!", "index.html");
                 return;
             }
+
             if (password.equals(storedPassword)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 response.sendRedirect("home.html");
             } else {
-                request.setAttribute("errorMessage", "Invalid Credentials! Please try again.");
-                request.getRequestDispatcher("index.html").forward(request, response);
+                showAlert(response, "Invalid Credentials! Please try again.", "index.html");
             }
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Database Error: " + e.getMessage());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            showAlert(response, "Database Error: " + e.getMessage(), "index.html");
         }
+    }
+
+    private void showAlert(HttpServletResponse response, String message, String redirectPage) throws IOException {
+        response.getWriter().println("<script type='text/javascript'>");
+        response.getWriter().println("alert('" + message + "');");
+        response.getWriter().println("window.location = '" + redirectPage + "';");
+        response.getWriter().println("</script>");
     }
 }

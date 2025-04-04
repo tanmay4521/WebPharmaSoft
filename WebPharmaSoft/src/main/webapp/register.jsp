@@ -122,7 +122,7 @@
 
     <h1>PharmaSoft Registration Page</h1>
 
-    <form class="form" action="registerServlet" method="post">
+    <form class="form" action="loginServlet" method="post">
         <span class="input-span">
             <label for="username" class="label">Username</label>
             <input type="text" name="username" id="username" required aria-label="Enter your Username"/>
