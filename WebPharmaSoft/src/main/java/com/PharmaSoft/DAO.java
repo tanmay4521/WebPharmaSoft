@@ -167,4 +167,13 @@ public class DAO
 		}
 		return list;
 	}
+	public static int registerUser(User u) throws ClassNotFoundException, SQLException
+	{
+		Connection con=DAO.getConnection();
+		PreparedStatement pst=con.prepareStatement("insert into user(username,password) values(?,?)");
+		pst.setString(1, u.getUserName());
+		pst.setString(2, u.getPassword());
+		int status=pst.executeUpdate();
+		return status;
+	}
 }

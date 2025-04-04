@@ -129,6 +129,27 @@ button:hover {
 	background-color: #004494;
 	transform: scale(0.98);
 }
+.button-delete{
+	padding: 4px 12px;
+	font-size: 18px;
+	color: white;
+	background-color: red; 
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	text-decoration: none;
+	display: inline-block;
+}
+.button-delete:hover {
+	background-color: darkred;
+	transform: scale(1.05);
+}
+
+.button-delete:active {
+	background-color: #004494;
+	transform: scale(0.98);
+}
 </style>
 </head>
 <body>
@@ -167,7 +188,7 @@ button:hover {
 						<td>${e.getMedQty()}</td>
 						<td><a href="editMed.jsp?id=${e.getId()}" class="button">Edit</a>
 						</td>
-						<td><a href="deleteMed.jsp?id=${e.getId()}" class="button">Delete</a>
+						<td><a href="deleteMed.jsp?id=${e.getId()}" class="button-delete">Delete</a>
 						</td>
 					</tr>
 				</c:forEach>
